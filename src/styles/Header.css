@@ -1,0 +1,100 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px 20px;
+}
+
+.header__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.header__topLeft {
+  display: flex;
+  align-items: center;
+}
+
+.header__logoImage {
+  width: 250px; /* 로고 이미지 너비 설정 */
+  margin-top: 20px;
+  margin-left: 30px;
+}
+
+.header__topRight {
+  display: flex;
+  align-items: center;
+}
+
+.header__topLink {
+  margin-left: 10px; /* 링크들 사이의 간격 조정 */
+  text-decoration: none;
+  color: #333;
+}
+
+.header__topLink:hover {
+  color: #00704a;
+}
+
+.header__search {
+  display: flex;
+  align-items: center;
+  margin-left: auto; /* 검색 입력 필드를 오른쪽으로 정렬 */
+  margin-right: 20px; /* 로그인 링크와의 간격 설정 */
+}
+
+.header__searchInput {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 200px; /* 검색 입력 필드 너비 설정 */
+}
+
+.header__searchButton {
+  padding: 8px 16px;
+  border: none;
+  background-color: #00704a;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.header__searchButton:hover {
+  background-color: #005c3b;
+}
+
+.header__bottom {
+  display: flex;
+  justify-content: center; /* 가운데 정렬 */
+}
+
+.header__nav {
+  display: flex;
+}
+
+.header__navList {
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.header__navItem {
+  margin-right: 100px;
+  cursor: pointer;
+  font-size: 30px;
+  font-weight: bold;
+  color: #005c3b;
+}
+
+.header__navItem a {
+  text-decoration: none;
+  color: #333;
+}
+
+.header__navItem a:hover {
+  color: #00704a;
+}
