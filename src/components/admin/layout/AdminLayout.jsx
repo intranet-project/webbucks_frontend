@@ -1,5 +1,4 @@
 import { Outlet } from "react-router-dom";
-import AdminHeader from "./AdminHeader";
 import AdminSidebar from "./AdminSideBar";
 import AdminFooter from "./AdminFooter";
 
@@ -8,7 +7,7 @@ const AdminLayout = () => {
     <div>
       <div style={{ display: "flex" }}>
         <AdminSidebar />
-        <main>
+        <main style={{ width: "100%", minWidth: "1024px" }}>
           <Outlet />
         </main>
       </div>
