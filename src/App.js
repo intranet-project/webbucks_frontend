@@ -11,6 +11,8 @@ import AdminOrder from "./components/admin/AdminOrder";
 import AdminSales from "./components/admin/AdminSales";
 import VoicePage from "./pages/VoicePage";
 import EventPage from "./pages/EventPage";
+import VoiceList from "./components/customer/Voice/VoiceList";
+import VoiceRegistration from "./components/customer/Voice/VoiceRegistration";
 
 const App = () => {
   return (
@@ -20,6 +22,9 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/customer" element={<Customer />} />
         <Route path="/customerVoice" element={<VoicePage />} />
+        <Route path="/voiceList" element={<VoiceList />} />
+        <Route path="/voiceRegistration" element={<VoiceRegistration />} />
+
         <Route path="/Menu" element={<MenuPage />} />
         <Route path="/event" element={<EventPage />} />
         <Route element={<AdminLayout />}>
