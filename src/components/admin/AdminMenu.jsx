@@ -46,27 +46,38 @@ const AdminMenu = () => {
 
   return (
     <div>
-      {apiData.map((apiData, index) => (
-        <div key={index}>
-          <span
-            onClick={() => openModal(apiData)}
-            style={{
-              cursor: "pointer",
-              textDecoration: "underline",
-              color: "blue",
-            }}
-          >{`${index + 1}. 메뉴명: ${apiData.menuName}, `}</span>
-          <span>{` 메뉴이미지 : ${apiData.menuImg}`}</span>
-          <span>{` 가격 : ${apiData.menuPrice}`}</span>
-          <span>{` 카테고리 : ${apiData.categoryname}`}</span>
-          <br />
-          <span>{`품절여부 : ${apiData.soldoutState}, `}</span>
-          <button onClick={() => updateApi(apiData.menuId, "Y")}>품절</button>
-          <button onClick={() => updateApi(apiData.menuId, "N")}>
-            품절취소
-          </button>
-        </div>
-      ))}
+      <table style={{ width: "100%" }}>
+        <tbody>
+          <tr>
+            <th>순번</th>
+            <th>메뉴이미지</th>
+            <th>메뉴명</th>
+            <th>가격</th>
+            <th>카테고리</th>
+            <th>품절여부</th>
+          </tr>
+          {apiData.map((apiData, index) => (
+            <tr key={index} onClick={() => openModal(apiData)}>
+              <td>{index + 1}</td>
+              <td>
+                <span>{apiData.menuImg}</span>
+              </td>
+              <td>
+                <span>{apiData.menuName}</span>
+              </td>
+              <td>
+                <span>{apiData.menuPrice}</span>
+              </td>
+              <td>
+                <span>{apiData.categoryname}</span>
+              </td>
+              <td>
+                <span>{apiData.soldoutState}</span>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
 
       <ModalForm isOpen={isModalOpen} closeModal={closeModal}>
         <span>{`메뉴명: ${selectedData.menuName}, `}</span>
@@ -87,7 +98,6 @@ const AdminMenu = () => {
           품절취소
         </button>
         <br />
-        <button onClick={closeModal}>닫기</button>
       </ModalForm>
     </div>
   );

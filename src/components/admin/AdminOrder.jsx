@@ -49,37 +49,42 @@ const AdminOrder = () => {
 
   return (
     <div>
-      {apiData.map((apiData, index) => (
-        <div key={index}>
-          <span
-            onClick={() => openModal(apiData)}
-            style={{
-              cursor: "pointer",
-              textDecoration: "underline",
-              color: "blue",
-            }}
-          >{`${index + 1}.주문번호: ${apiData.b_orderId}, `}</span>
-          <span>{` 고객ID : ${apiData.custId}`}</span>
-          <span>{` 메뉴 : ${apiData.menuName}`}</span>
-          <span>{` 주문시간 : ${apiData.b_orderCreatedAt}`}</span>
-          <span>{` 완료시간 : ${apiData.b_orderStateUpdateAt}`}</span>
-          <span>{` 오더상태 : ${apiData.b_orderState}`}</span>
-          <br />
-          <button onClick={() => updateApi(apiData.b_orderStatusId, "대기")}>
-            대기
-          </button>
-          <button onClick={() => updateApi(apiData.b_orderStatusId, "준비중")}>
-            준비중
-          </button>
-          <button onClick={() => updateApi(apiData.b_orderStatusId, "완료")}>
-            완료
-          </button>
-          <button onClick={() => updateApi(apiData.b_orderStatusId, "취소")}>
-            취소
-          </button>
-          <br />
-        </div>
-      ))}
+      <table style={{ width: "100%" }}>
+        <tbody>
+          <tr>
+            <th>순번</th>
+            <th>주문번호</th>
+            <th>메뉴명</th>
+            <th>고객ID</th>
+            <th>주문시간</th>
+            <th>상태변경시간</th>
+            <th>오더상태</th>
+          </tr>
+          {apiData.map((apiData, index) => (
+            <tr key={index} onClick={() => openModal(apiData)}>
+              <td>{index + 1}</td>
+              <td>
+                <span>{apiData.b_orderId}</span>
+              </td>
+              <td>
+                <span>{apiData.menuName}</span>
+              </td>
+              <td>
+                <span>{apiData.custId}</span>
+              </td>
+              <td>
+                <span>{apiData.b_orderCreatedAt}</span>
+              </td>
+              <td>
+                <span>{apiData.b_orderStateUpdateAt}</span>
+              </td>
+              <td>
+                <span>{apiData.b_orderState}</span>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
 
       <ModalForm isOpen={isModalOpen} closeModal={closeModal}>
         <span>{`주문번호: ${selectedData.b_orderId}, `}</span>
@@ -89,8 +94,6 @@ const AdminOrder = () => {
         <span>{`메뉴 : ${selectedData.menuName}`}</span>
         <br />
         <span>{`주문시간 : ${selectedData.b_orderCreatedAt}`}</span>
-        <br />
-        <span>{`완료시간 : ${selectedData.b_orderStateUpdateAt}`}</span>
         <br />
         <span>{` 오더상태 : ${selectedData.b_orderState}`}</span>
         <br />
@@ -109,7 +112,6 @@ const AdminOrder = () => {
           취소
         </button>
         <br />
-        <button onClick={closeModal}>닫기</button>
       </ModalForm>
     </div>
   );
