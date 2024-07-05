@@ -1,0 +1,24 @@
+* {
+    box-sizing: border-box;
+}
+
+.containerAdmin {
+    padding: 20px;
+    width: 100%;
+    min-width: 768px;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    text-align: center; 
+    vertical-align: middle; 
+}
+table tr:not(:first-child):hover {
+    cursor: pointer;
+    border: 1px solid rgb(238, 144, 144);
+    background-color: lightgray;
+}
+button, .close_btn {
+    cursor: pointer;
+}
