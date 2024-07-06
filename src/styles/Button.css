@@ -1,0 +1,22 @@
+.filter-button {
+  background-color: #00704a;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin-right: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  outline: none;
+}
+
+.filter-button:hover {
+  background-color: #005c3b;
+}
+
+.search-input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 10px;
+  width: 200px;
+}
