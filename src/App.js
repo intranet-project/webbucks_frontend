@@ -13,6 +13,7 @@ import VoicePage from "./pages/VoicePage";
 import EventPage from "./pages/EventPage";
 import VoiceList from "./components/customer/Voice/VoiceList";
 import VoiceRegistration from "./components/customer/Voice/VoiceRegistration";
+import MyPage from "./pages/MyPage";
 
 const App = () => {
   return (
@@ -24,11 +25,12 @@ const App = () => {
         <Route path="/customerVoice" element={<VoicePage />} />
         <Route path="/voiceList" element={<VoiceList />} />
         <Route path="/voiceRegistration" element={<VoiceRegistration />} />
-
         <Route path="/Menu" element={<MenuPage />} />
         <Route path="/event" element={<EventPage />} />
+
+        <Route path="/mypage" element={<MyPage />} />
         <Route element={<AdminLayout />}>
-          <Route path="/admin_home" element={<AdminHome />} />
+          <Route path="/admin" element={<AdminHome />} />
           <Route path="/admin_order" element={<AdminOrder />} />
           <Route path="/admin_menu" element={<AdminMenu />} />
           <Route path="/admin_sales" element={<AdminSales />} />
