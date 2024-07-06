@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "../../../styles/VoiceRegistration.css";
 
 const VoiceRegistration = () => {
-  const [custId, setCustId] = useState("1");
+  const [custId, setCustId] = useState("2");
   const [voiceTitle, setVoiceTitle] = useState("");
   const [voiceContent, setVoiceContent] = useState("");
   const [storeId, setStoreId] = useState("");
@@ -15,7 +15,7 @@ const VoiceRegistration = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:8000/api/customer/voice",
+        "http://localhost:8000/api/v1/webbucks/customer/voice",
         {
           custId: custId,
           voiceTitle: voiceTitle,
