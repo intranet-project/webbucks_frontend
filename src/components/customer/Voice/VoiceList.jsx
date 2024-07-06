@@ -6,18 +6,17 @@ import "../../../styles/VoiceList.css";
 const VoiceList = () => {
   const [custId, setCustId] = useState("1");
   const [answers, setAnswers] = useState([]);
-  const [filter, setFilter] = useState("전체"); // 필터 상태 추가
-  const [activeFilter, setActiveFilter] = useState("전체"); // 활성 필터 상태 추가
-  const navigate = useNavigate(); // useNavigate 훅 사용
+  const [filter, setFilter] = useState("전체");
+  const [activeFilter, setActiveFilter] = useState("전체");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchAnswerData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8000/api/customer/answer?custId=${custId}`
+          `http://localhost:8000/api/v1/webbucks/customer/answer?custId=${custId}`
         );
 
-        // response.data가 배열인지 확인하고 상태를 업데이트함
         if (Array.isArray(response.data)) {
           setAnswers(response.data);
         } else {
@@ -35,9 +34,9 @@ const VoiceList = () => {
 
   const getStatusColor = (answer) => {
     if (answer.voiceState === null || answer.voiceState === undefined) {
-      return "red"; // 처리 여부가 null이면 빨간색
+      return "red";
     } else {
-      return answer.voiceState === "미처리" ? "red" : "green";
+      return answer.voiceState === "미처리" ? "red" : "blue";
     }
   };
 
@@ -46,31 +45,36 @@ const VoiceList = () => {
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, "0");
     const day = String(date.getDate()).padStart(2, "0");
-    //const hours = String(date.getHours()).padStart(2, "0");
-    //const minutes = String(date.getMinutes()).padStart(2, "0");
 
-    return `${year}년 ${month}월 ${day}일 `;
+    return `${year}년 ${month}월 ${day}일`;
   };
 
   const filterAnswers = () => {
+    let filteredAnswers = answers;
+
     if (filter === "전체") {
-      return answers;
+      filteredAnswers = answers;
     } else if (filter === "나의 소리") {
-      return answers;
+      filteredAnswers = answers.filter((answer) => answer.voiceState === null);
     } else if (filter === "답변 확인") {
-      return answers.filter((answer) => answer.voiceState === "처리완료");
+      filteredAnswers = answers.filter((answer) => answer.voiceState !== null);
     }
-    return answers;
+
+    filteredAnswers.sort(
+      (a, b) => new Date(b.voiceDate) - new Date(a.voiceDate)
+    );
+
+    return filteredAnswers;
   };
 
   const handleFilterClick = (filterValue) => {
     setFilter(filterValue);
-    setActiveFilter(filterValue); // Set active filter when a button is clicked
+    setActiveFilter(filterValue);
   };
 
   return (
     <div className="container">
-      <h2>고객의 소리 답변 확인</h2>
+      <h2>나의 소리</h2>
       <div className="filter-buttons">
         <button
           className={activeFilter === "전체" ? "active" : ""}
@@ -82,13 +86,13 @@ const VoiceList = () => {
           className={activeFilter === "나의 소리" ? "active" : ""}
           onClick={() => handleFilterClick("나의 소리")}
         >
-          나의 소리
+          등록한 나의 소리
         </button>
         <button
           className={activeFilter === "답변 확인" ? "active" : ""}
           onClick={() => handleFilterClick("답변 확인")}
         >
-          답변 확인
+          처리된 나의 소리
         </button>
       </div>
       {filterAnswers().length === 0 ? (
@@ -100,13 +104,10 @@ const VoiceList = () => {
               <tbody>
                 <tr>
                   <td>
-                    <strong>번호:</strong> {answer.voiceId}
+                    <strong>접수 번호:</strong> {answer.voiceId}
                   </td>
                   <td>
-                    <p>
-                      등록일:
-                      {formatDate(answer.voiceDate)}
-                    </p>
+                    <strong>등록일:</strong> {formatDate(answer.voiceDate)}
                   </td>
                   <td>
                     <span style={{ color: getStatusColor(answer) }}>
@@ -114,60 +115,35 @@ const VoiceList = () => {
                     </span>
                   </td>
                 </tr>
-                {filter === "전체" && (
-                  <>
-                    <tr>
-                      <td>
-                        <strong>제목:</strong>
-                      </td>
-                      <td>{answer.voiceTitle}</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <strong>내용:</strong>
-                      </td>
-                      <td>{answer.voiceContent}</td>
-                    </tr>
-                    {answer.voiceState !== "미처리" && (
-                      <tr>
-                        <td>
-                          <strong>답변</strong>
-                        </td>
-                        <td>
-                          <p>{answer.answerContent}</p>
-                        </td>
-                      </tr>
-                    )}
-                  </>
+                <tr>
+                  <td colSpan="3">
+                    <div className="content-container">
+                      <strong>제목:</strong> {answer.voiceTitle}
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td colSpan="3">
+                    <div className="content-container">
+                      <strong>내용:</strong> {answer.voiceContent}
+                    </div>
+                  </td>
+                </tr>
+                {answer.voiceState !== "미처리" && answer.answerContent && (
+                  <tr>
+                    <td colSpan="3">
+                      <div className="content-answer">
+                        <div className="answer"> ☞ {answer.answerContent}</div>
+                        <div />
+                      </div>
+                    </td>
+                  </tr>
                 )}
                 {filter === "답변 확인" && (
                   <>
                     <tr>
-                      <td>
-                        <p>처리일</p>
-                      </td>
-                      <td>
-                        <p>{formatDate(answer.answerDate)}</p>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <p>답변 내용:</p>
-                      </td>
-                      <td>
-                        <p>{answer.answerContent}</p>
-                      </td>
-                    </tr>
-                  </>
-                )}
-                {filter === "나의 소리" && (
-                  <>
-                    <tr>
-                      <td>
-                        <p>고객의 소리 내용:</p>
-                      </td>
-                      <td>
-                        <p>{answer.voiceContent}</p>
+                      <td colSpan="3">
+                        <strong>처리일:</strong> {formatDate(answer.answerDate)}
                       </td>
                     </tr>
                   </>
