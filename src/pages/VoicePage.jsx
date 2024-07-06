@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../styles/VoicePage.css";
+import VoiceList from "../components/customer/Voice/VoiceList";
 
 /**
  * 고객의소리 페이지
@@ -9,16 +10,15 @@ import "../styles/VoicePage.css";
  */
 function VoicePage() {
   return (
-    <div className="voice-page-container">
-      <h1 className="voice-page-title">고객의 소리</h1>
-      <div className="voice-page-links">
+    <div>
+      <h1>고객의 소리</h1>
+      <div className="voice-page-container">
         <Link className="voice-page-link" to="/voiceRegistration">
           고객의 소리 등록하기
         </Link>
-        <Link className="voice-page-link" to="/voiceList">
-          고객의 소리 답변 확인하기
-        </Link>
       </div>
+
+      <VoiceList />
     </div>
   );
 }

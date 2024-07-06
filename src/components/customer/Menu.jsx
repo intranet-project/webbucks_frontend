@@ -16,9 +16,9 @@ const Menu = ({ name, detail, image }) => {
       }}
     >
       <img
-        src={process.env.PUBLIC_URL + "/아메리카노.png"}
+        src={process.env.PUBLIC_URL + image}
         alt={name}
-        style={{ width: "100%", height: "200px", objectFit: "cover" }}
+        style={{ width: "100%", height: "250px", objectFit: "cover" }}
       />
       <h3>{name}</h3>
       <p>{detail}</p>
