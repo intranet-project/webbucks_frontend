@@ -1,11 +1,12 @@
 /* 기본 컨테이너 스타일 */
 .container {
-  max-width: 600px;
+  max-width: 800px;
   margin: 0 auto;
   padding: 20px;
   background-color: #f4f4f4;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 50px;
 }
 
 h2 {
@@ -63,6 +64,7 @@ h4 {
 
 .button:hover {
   background-color: #005c3b;
+  width: 30%;
 }
 .button-cancel {
   width: 20%;

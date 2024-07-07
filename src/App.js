@@ -14,6 +14,8 @@ import EventPage from "./pages/EventPage";
 import VoiceList from "./components/customer/Voice/VoiceList";
 import VoiceRegistration from "./components/customer/Voice/VoiceRegistration";
 import MyPage from "./pages/MyPage";
+import StorePage from "./pages/StorePage";
+import Footer from "./components/common/Footer";
 
 const App = () => {
   return (
@@ -27,6 +29,7 @@ const App = () => {
         <Route path="/voiceRegistration" element={<VoiceRegistration />} />
         <Route path="/Menu" element={<MenuPage />} />
         <Route path="/event" element={<EventPage />} />
+        <Route path="/store" element={<StorePage />} />
 
         <Route path="/mypage" element={<MyPage />} />
         <Route element={<AdminLayout />}>
@@ -36,6 +39,7 @@ const App = () => {
           <Route path="/admin_sales" element={<AdminSales />} />
         </Route>
       </Routes>
+      <Footer />
     </div>
   );
 };

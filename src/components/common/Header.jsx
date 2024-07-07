@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../../styles/Header.css";
 import { Link } from "react-router-dom";
+
 /**
- * Hedaer 컴포넌트로 네비게이션 메뉴를 포함한 헤더 기능
+ * Header 컴포넌트로 네비게이션 메뉴를 포함한 헤더 기능
  * 로그인시 로그아웃, 마이페이지 보임
  * @author 최유빈
  * @version 1.1
@@ -11,6 +12,7 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(true); // 초기 로그인 상태는 false로 설정
+
   const handleLogout = () => {
     // 로그아웃 로직 구현
     setIsLoggedIn(false);
@@ -62,17 +64,16 @@ const Header = () => {
         <nav className="header__nav">
           <ul className="header__navList">
             <li className="header__navItem">
-              <Link to="/menu">메뉴</Link>
-            </li>
-
-            <li className="header__navItem">
-              <Link to="/event">이벤트</Link>
+              <Link to="/menu">MENU</Link>
             </li>
             <li className="header__navItem">
-              <Link to="/customerVoice">고객의 소리</Link>
+              <Link to="/store">STORE</Link>
             </li>
             <li className="header__navItem">
-              <Link to="/admin">관리자 페이지</Link>
+              <Link to="/event">EVENT</Link>
+            </li>
+            <li className="header__navItem">
+              <Link to="/customerVoice">VOICE</Link>
             </li>
           </ul>
         </nav>

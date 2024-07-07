@@ -6,8 +6,10 @@
   background-color: #f4f4f4;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  max-height: 700px; /* 내역이 많을 때 고정할 높이 */
   overflow-y: auto; /* Y축 스크롤 적용 */
+
+  display: flex;
+  flex-direction: column; /* 수직으로 요소들을 배치 */
 }
 
 h2 {
@@ -40,11 +42,11 @@ h2 {
   background-color: white;
   border-radius: 8px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  width: 100%; /* 컨테이너의 너비에 맞춤 */
 }
 
 .answer-card table {
   width: 100%;
-  border-collapse: collapse;
 }
 
 .answer-card td {
@@ -86,7 +88,6 @@ h2 {
   padding: 10px;
   border-radius: 4px;
   font-size: 25px; /* 글자 크기 설정 */
-
   width: 95%;
   text-align: left;
 }
