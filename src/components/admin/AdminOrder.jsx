@@ -49,7 +49,7 @@ const AdminOrder = () => {
 
   return (
     <div>
-      <table style={{ width: "100%" }}>
+      <table className="table-admin sel">
         <tbody>
           <tr>
             <th>순번</th>
@@ -87,31 +87,72 @@ const AdminOrder = () => {
       </table>
 
       <ModalForm isOpen={isModalOpen} closeModal={closeModal}>
-        <span>{`주문번호: ${selectedData.b_orderId}, `}</span>
-        <br />
-        <span>{`고객ID : ${selectedData.custId}`}</span>
-        <br />
-        <span>{`메뉴 : ${selectedData.menuName}`}</span>
-        <br />
-        <span>{`주문시간 : ${selectedData.b_orderCreatedAt}`}</span>
-        <br />
-        <span>{` 오더상태 : ${selectedData.b_orderState}`}</span>
-        <br />
-        <button onClick={() => updateApi(selectedData.b_orderStatusId, "대기")}>
-          대기
-        </button>
-        <button
-          onClick={() => updateApi(selectedData.b_orderStatusId, "준비중")}
-        >
-          준비중
-        </button>
-        <button onClick={() => updateApi(selectedData.b_orderStatusId, "완료")}>
-          완료
-        </button>
-        <button onClick={() => updateApi(selectedData.b_orderStatusId, "취소")}>
-          취소
-        </button>
-        <br />
+        <div className="modal-header">
+          <p className="text-title">오더 상세</p>
+        </div>
+
+        <div className="modal-body">
+          <div className="div-radius">
+            <table>
+              <tbody>
+                <tr>
+                  <th style={{ width: "15%" }}>
+                    <span>주문번호</span>
+                  </th>
+                  <th style={{ width: "30%" }}>
+                    <span>메뉴</span>
+                  </th>
+                  <th style={{ width: "25%" }}>
+                    <span>주문시간</span>
+                  </th>
+                  <th style={{ width: "15%" }}>
+                    <span>고객ID</span>
+                  </th>
+                  <th style={{ width: "15%" }}>
+                    <span>오더상태</span>
+                  </th>
+                </tr>
+                <tr>
+                  <td>
+                    <span>{selectedData.b_orderId}</span>
+                  </td>
+                  <td>
+                    <span>{selectedData.menuName}</span>
+                  </td>
+                  <td>
+                    <span>{selectedData.b_orderCreatedAt}</span>
+                  </td>
+                  <td>
+                    <span>{selectedData.custId}</span>
+                  </td>
+                  <td>
+                    <span>{selectedData.b_orderState}</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div className="modal-footer">
+          <button
+            className="btn-admin"
+            onClick={() => updateApi(selectedData.b_orderStatusId, "준비중")}
+          >
+            메뉴 준비
+          </button>
+          <button
+            className="btn-admin"
+            onClick={() => updateApi(selectedData.b_orderStatusId, "완료")}
+          >
+            주문 완료
+          </button>
+          <button
+            className="btn-admin"
+            onClick={() => updateApi(selectedData.b_orderStatusId, "취소")}
+          >
+            오더 취소
+          </button>
+        </div>
       </ModalForm>
     </div>
   );

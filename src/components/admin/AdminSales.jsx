@@ -35,15 +35,11 @@ const AdminSales = () => {
     <div>
       {apiData.map((apiData, index) => (
         <div key={index}>
-          <span>{`${index + 1}. 주문번호: ${apiData.b_orderId}, `}</span>
-          <span>{` 주문날짜 : ${apiData.b_orderCreatedAt}`}</span>
-          <span>{` 사용 포인트 : ${apiData.b_orderPointsUsed}`}</span>
+          <span>{`${index + 1}. 주문번호: ${apiData.orderId}, `}</span>
+          <span>{` 주문날짜 : ${apiData.orderCreatedAt}`}</span>
+          <span>{` 사용 포인트 : ${apiData.orderPointsUsed}`}</span>
           <span>{` 카테고리 : ${apiData.categoryname}`}</span>
           <br />
-          {/* <button onClick={() => updateApi(apiData.menuId, "Y")}>품절</button>
-          <button onClick={() => updateApi(apiData.menuId, "N")}>
-            품절취소
-          </button> */}
         </div>
       ))}
     </div>

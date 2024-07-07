@@ -1,24 +1,97 @@
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-.containerAdmin {
+.container-admin {
     padding: 20px;
     width: 100%;
-    min-width: 768px;
+}
+table{
+  border-radius: 10px;
+  border-collapse: collapse;
+}
+th {
+  background-color: lightgoldenrodyellow;
+}
+th, td{
+  padding: 5px;
 }
 
 table, th, td {
-    border: 1px solid black;
-    border-collapse: collapse;
+    border: 1px solid lightgray;
     text-align: center; 
     vertical-align: middle; 
+    word-break: break-all;
 }
-table tr:not(:first-child):hover {
-    cursor: pointer;
-    border: 1px solid rgb(238, 144, 144);
-    background-color: lightgray;
+
+.table-admin {
+  width: 100%;
 }
-button, .close_btn {
+
+.table-admin.sel tr:not(:first-child):hover {
     cursor: pointer;
+    background-color: rgb(211, 211, 211);
+}
+
+button {
+    cursor: pointer;
+    outline: none;
+  }
+  
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+  
+  li {
+    list-style: none;
+  }
+  
+  input:focus {
+    outline: none;
+  }
+
+p.text-title {
+    font-weight: bold;
+    font-size: 30px;
+    
+}
+
+.btn-admin {
+  margin: 0 10px 0 10px;
+  width: 130px;
+  height: 40px;
+  color: #fff;
+  border-radius: 5px;
+  padding: 10px 25px;
+  font-weight: bold;
+  background: linear-gradient(0deg, rgb(75, 75, 75) 0%, gray 100%);
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+  outline: none;
+}
+
+.btn-admin:hover {
+  background: linear-gradient(0deg, gray 0%, rgb(184, 184, 184) 100%);
+}
+
+.menu-img img {
+  width: 100%;
+}
+
+.div-radius {
+  border-radius: 10px;
+}
+
+.dashboard-box {
+  padding: 30px;
+  display: inline-block;
+  border-radius: 10px;
+}
+
+.dashboard-title{
+  font-weight: bold;
 }
