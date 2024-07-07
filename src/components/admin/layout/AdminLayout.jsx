@@ -7,7 +7,7 @@ const AdminLayout = () => {
     <div>
       <div style={{ display: "flex" }}>
         <AdminSidebar />
-        <main className="containerAdmin" style={{}}>
+        <main className="container-admin" style={{}}>
           <Outlet />
         </main>
       </div>

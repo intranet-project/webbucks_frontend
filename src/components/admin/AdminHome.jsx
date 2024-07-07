@@ -1,7 +1,8 @@
 import AdminChart from "./AdminChart";
+
 const AdminHome = () => {
   return (
-    <div>
+    <div style={{ minWidth: "1280px" }}>
       <AdminChart />
     </div>
   );

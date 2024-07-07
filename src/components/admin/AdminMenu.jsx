@@ -46,7 +46,7 @@ const AdminMenu = () => {
 
   return (
     <div>
-      <table style={{ width: "100%" }}>
+      <table className="table-admin sel">
         <tbody>
           <tr>
             <th>순번</th>
@@ -80,24 +80,75 @@ const AdminMenu = () => {
       </table>
 
       <ModalForm isOpen={isModalOpen} closeModal={closeModal}>
-        <span>{`메뉴명: ${selectedData.menuName}, `}</span>
-        <br />
-        <span>{`메뉴이미지 : ${selectedData.menuImg}`}</span>
-        <br />
-        <span>{`메뉴설명 : ${selectedData.menuDetail}`}</span>
-        <br />
-        <span>{`가격 : ${selectedData.menuPrice}`}</span>
-        <br />
-        <span>{`카테고리 : ${selectedData.categoryname}`}</span>
-        <br />
-        <span>{`품절여부 : ${selectedData.soldoutState}, `}</span>
-        <button onClick={() => updateApi(selectedData.menuId, "Y")}>
-          품절
-        </button>
-        <button onClick={() => updateApi(selectedData.menuId, "N")}>
-          품절취소
-        </button>
-        <br />
+        <div className="modal-container">
+          <div className="modal-header">
+            <p className="text-title">메뉴 상세</p>
+          </div>
+          <div className="modal-body menu">
+            <table>
+              <tbody>
+                <tr>
+                  <td className="menu-img" rowSpan={5} style={{ width: "35%" }}>
+                    <img
+                      src="https://media1.tenor.com/m/vxJjiiRh3CUAAAAd/%EC%B6%98%EC%8B%9D-%EC%B6%98%EC%8B%9D%EC%9D%B4.gif"
+                      alt=""
+                    />
+                  </td>
+                  <th style={{ width: "15%", height: "15%" }}>
+                    <span>메뉴명</span>
+                  </th>
+                  <td style={{ width: "50%" }}>
+                    <span>{selectedData.menuName}</span>
+                  </td>
+                </tr>
+                <tr>
+                  <th style={{ height: "40%" }}>메뉴설명</th>
+                  <td style={{ textAlign: "left" }}>
+                    <span>{selectedData.menuDetail}</span>
+                  </td>
+                </tr>
+                <tr>
+                  <th style={{ height: "15%" }}>
+                    <span>가격</span>
+                  </th>
+                  <td>
+                    <span>{selectedData.menuPrice}</span>
+                  </td>
+                </tr>
+                <tr>
+                  <th style={{ height: "15%" }}>
+                    <span>카테고리</span>
+                  </th>
+                  <td>
+                    <span>{selectedData.categoryname}</span>
+                  </td>
+                </tr>
+                <tr>
+                  <th style={{ height: "15%" }}>
+                    <span>품절여부</span>
+                  </th>
+                  <td>
+                    <span>{selectedData.soldoutState}</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div className="modal-footer">
+            <button
+              className="btn-admin"
+              onClick={() => updateApi(selectedData.menuId, "Y")}
+            >
+              품절
+            </button>
+            <button
+              className="btn-admin"
+              onClick={() => updateApi(selectedData.menuId, "N")}
+            >
+              품절취소
+            </button>
+          </div>
+        </div>
       </ModalForm>
     </div>
   );
