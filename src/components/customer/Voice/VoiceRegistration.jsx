@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "../../../styles/VoiceRegistration.css";
@@ -8,7 +8,25 @@ const VoiceRegistration = () => {
   const [voiceTitle, setVoiceTitle] = useState("");
   const [voiceContent, setVoiceContent] = useState("");
   const [storeId, setStoreId] = useState("");
-  const navigate = useNavigate(); // Use useNavigate hook to get navigation function
+  const [storeList, setStoreList] = useState([]); // 매장 목록 상태 추가
+  const navigate = useNavigate();
+
+  // 페이지 로드 시 매장 목록 가져오기
+  useEffect(() => {
+    fetchStoreList();
+  }, []);
+
+  const fetchStoreList = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost:8000/api/stores" // 매장 목록을 가져오는 API 엔드포인트
+      );
+      setStoreList(response.data); // 가져온 매장 목록을 상태에 설정
+    } catch (error) {
+      console.error("매장 목록을 불러오는 중 오류 발생:", error);
+      alert("매장 목록을 불러오는 중 오류가 발생했습니다.");
+    }
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -41,7 +59,11 @@ const VoiceRegistration = () => {
   };
 
   const handleCancelClick = () => {
-    navigate("/customerVoice"); // Navigate to /voicePage route
+    navigate("/customerVoice");
+  };
+
+  const handleStoreChange = (storeId) => {
+    setStoreId(storeId);
   };
 
   return (
@@ -54,16 +76,22 @@ const VoiceRegistration = () => {
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="storeId" className="label">
-            매장ID:
+            매장 선택:
           </label>
-          <input
-            type="number"
+          <select
             id="storeId"
             value={storeId}
-            onChange={(e) => setStoreId(e.target.value)}
+            onChange={(e) => handleStoreChange(e.target.value)}
             className="input"
             required
-          />
+          >
+            <option value="">매장을 선택하세요</option>
+            {storeList.map((store) => (
+              <option key={store.storeId} value={store.storeId}>
+                {store.storeName}
+              </option>
+            ))}
+          </select>
         </div>
         <div className="form-group">
           <label htmlFor="voiceTitle" className="label">

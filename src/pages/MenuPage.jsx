@@ -9,7 +9,7 @@ import MenuList from "../components/customer/MenuList";
 function MenuPage() {
   return (
     <div className="App">
-      <h1>스타벅스 메뉴</h1>
+      <h1>블랙벅스 메뉴</h1>
       <MenuList />
     </div>
   );
