@@ -46,21 +46,25 @@ const AdminMenu = () => {
 
   return (
     <div>
+      <p className="text-title">메뉴 관리</p>
       <table className="table-admin sel">
         <tbody>
           <tr>
-            <th>순번</th>
-            <th>메뉴이미지</th>
-            <th>메뉴명</th>
-            <th>가격</th>
-            <th>카테고리</th>
-            <th>품절여부</th>
+            <th style={{ width: "10%" }}>순번</th>
+            <th style={{ width: "15%" }}>메뉴이미지</th>
+            <th style={{ width: "30%" }}>메뉴명</th>
+            <th style={{ width: "15%" }}>가격</th>
+            <th style={{ width: "15%" }}>카테고리</th>
+            <th style={{ width: "15%" }}>품절여부</th>
           </tr>
           {apiData.map((apiData, index) => (
             <tr key={index} onClick={() => openModal(apiData)}>
               <td>{index + 1}</td>
-              <td>
-                <span>{apiData.menuImg}</span>
+              <td className="menu-img">
+                <img
+                  src={process.env.PUBLIC_URL + apiData.menuImg}
+                  style={{ width: "100px", height: "100px" }}
+                />
               </td>
               <td>
                 <span>{apiData.menuName}</span>
@@ -90,8 +94,8 @@ const AdminMenu = () => {
                 <tr>
                   <td className="menu-img" rowSpan={5} style={{ width: "35%" }}>
                     <img
-                      src="https://media1.tenor.com/m/vxJjiiRh3CUAAAAd/%EC%B6%98%EC%8B%9D-%EC%B6%98%EC%8B%9D%EC%9D%B4.gif"
-                      alt=""
+                      src={process.env.PUBLIC_URL + selectedData.menuImg}
+                      alt={selectedData.menuName}
                     />
                   </td>
                   <th style={{ width: "15%", height: "15%" }}>

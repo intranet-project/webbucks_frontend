@@ -11,22 +11,7 @@ import {
   Legend,
 } from "recharts";
 
-// const data = [
-//   { name: "1월", coffee: 4000, juice: 2400, food: 2400 },
-//   { name: "2월", coffee: 3000, juice: 1398, food: 2210 },
-//   { name: "3월", coffee: 2000, juice: 9800, food: 2290 },
-//   { name: "4월", coffee: 2780, juice: 3908, food: 2000 },
-//   { name: "5월", coffee: 1890, juice: 4800, food: 2181 },
-//   { name: "6월", coffee: 2390, juice: 3800, food: 2500 },
-//   { name: "7월", coffee: 3490, juice: 4300, food: 2100 },
-//   { name: "8월", coffee: 4000, juice: 2400, food: 2400 },
-//   { name: "9월", coffee: 3000, juice: 1398, food: 2210 },
-//   { name: "10월", coffee: 2000, juice: 9800, food: 2290 },
-//   { name: "11월", coffee: 2780, juice: 3908, food: 2000 },
-//   { name: "12월", coffee: 1890, juice: 4800, food: 2181 },
-// ];
-
-const AdminChart = ({ data }) => {
+const AdminChart = () => {
   const [apiData, setApiData] = useState([]);
   const [monthlyData, setMonthlyData] = useState([]);
 
@@ -53,21 +38,32 @@ const AdminChart = ({ data }) => {
     data.forEach((item) => {
       const orderDate = new Date(item.orderCreatedAt);
       const month = orderDate.getMonth() + 1; // 월을 1부터 시작하게 설정
-      const category = item.categoryname.includes("coffee")
-        ? "coffee"
-        : item.categoryname.includes("juice")
-        ? "juice"
-        : item.categoryname.includes("food")
-        ? "food"
+      const category = item.categoryname.includes("커피")
+        ? "커피"
+        : item.categoryname.includes("디카페인")
+        ? "디카페인"
+        : item.categoryname.includes("음료")
+        ? "음료"
+        : item.categoryname.includes("푸드")
+        ? "푸드"
+        : item.categoryname.includes("이벤트")
+        ? "이벤트"
         : null;
 
       if (!monthMap[month]) {
-        monthMap[month] = { coffee: 0, juice: 0, food: 0, all: 0 };
+        monthMap[month] = {
+          커피: 0,
+          디카페인: 0,
+          음료: 0,
+          푸드: 0,
+          이벤트: 0,
+          전체: 0,
+        };
       }
 
       if (category) {
         monthMap[month][category] += item.orderPointsUsed;
-        monthMap[month]["all"] += item.orderPointsUsed;
+        monthMap[month]["전체"] += item.orderPointsUsed;
       }
     });
 
@@ -76,10 +72,12 @@ const AdminChart = ({ data }) => {
     for (let i = 1; i <= 12; i++) {
       formattedData.push({
         name: `${i}월`,
-        coffee: monthMap[i]?.coffee || 0,
-        juice: monthMap[i]?.juice || 0,
-        food: monthMap[i]?.food || 0,
-        all: monthMap[i]?.all || 0,
+        커피: monthMap[i]?.커피 || 0,
+        디카페인: monthMap[i]?.디카페인 || 0,
+        음료: monthMap[i]?.음료 || 0,
+        푸드: monthMap[i]?.푸드 || 0,
+        이벤트: monthMap[i]?.이벤트 || 0,
+        전체: monthMap[i]?.전체 || 0,
       });
     }
 
@@ -93,7 +91,7 @@ const AdminChart = ({ data }) => {
           <span>월별 매출 그래프</span>
         </div>
 
-        <LineChart width={600} height={300} data={monthlyData} fontSize={14}>
+        <LineChart width={580} height={290} data={monthlyData} fontSize={14}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis
             dataKey="name"
@@ -103,14 +101,16 @@ const AdminChart = ({ data }) => {
           <YAxis />
           <Tooltip />
           <Legend />
-          <Line type="monotone" dataKey="coffee" stroke="#8884d8" />
-          <Line type="monotone" dataKey="juice" stroke="#82ca9d" />
-          <Line type="monotone" dataKey="food" stroke="#e642af" />
+          <Line type="monotone" dataKey="커피" stroke="#f19224" />
+          <Line type="monotone" dataKey="디카페인" stroke="#a57020" />
+          <Line type="monotone" dataKey="음료" stroke="#21e06a" />
+          <Line type="monotone" dataKey="푸드" stroke="#3250d6" />
+          <Line type="monotone" dataKey="이벤트" stroke="#e44177" />
           <Line
             type="monotone"
-            dataKey="all"
-            stroke="#80961f"
-            strokeWidth={2}
+            dataKey="전체"
+            stroke="#cccf22"
+            strokeWidth={3}
           />
         </LineChart>
       </div>

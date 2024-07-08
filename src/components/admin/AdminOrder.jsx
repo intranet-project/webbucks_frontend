@@ -49,6 +49,7 @@ const AdminOrder = () => {
 
   return (
     <div>
+      <p className="text-title">오더 관리</p>
       <table className="table-admin sel">
         <tbody>
           <tr>
