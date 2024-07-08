@@ -91,7 +91,7 @@ const AdminChart = () => {
           <span>월별 매출 그래프</span>
         </div>
 
-        <LineChart width={580} height={290} data={monthlyData} fontSize={14}>
+        <LineChart width={550} height={290} data={monthlyData} fontSize={14}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis
             dataKey="name"

@@ -47,41 +47,43 @@ const AdminMenu = () => {
   return (
     <div>
       <p className="text-title">메뉴 관리</p>
-      <table className="table-admin sel">
-        <tbody>
-          <tr>
-            <th style={{ width: "10%" }}>순번</th>
-            <th style={{ width: "15%" }}>메뉴이미지</th>
-            <th style={{ width: "30%" }}>메뉴명</th>
-            <th style={{ width: "15%" }}>가격</th>
-            <th style={{ width: "15%" }}>카테고리</th>
-            <th style={{ width: "15%" }}>품절여부</th>
-          </tr>
-          {apiData.map((apiData, index) => (
-            <tr key={index} onClick={() => openModal(apiData)}>
-              <td>{index + 1}</td>
-              <td className="menu-img">
-                <img
-                  src={process.env.PUBLIC_URL + apiData.menuImg}
-                  style={{ width: "100px", height: "100px" }}
-                />
-              </td>
-              <td>
-                <span>{apiData.menuName}</span>
-              </td>
-              <td>
-                <span>{apiData.menuPrice}</span>
-              </td>
-              <td>
-                <span>{apiData.categoryname}</span>
-              </td>
-              <td>
-                <span>{apiData.soldoutState}</span>
-              </td>
+      <div className="div-scroll" style={{ maxHeight: "800px" }}>
+        <table className="table-admin sel">
+          <tbody>
+            <tr>
+              <th style={{ width: "10%" }}>순번</th>
+              <th style={{ width: "15%" }}>메뉴이미지</th>
+              <th style={{ width: "30%" }}>메뉴명</th>
+              <th style={{ width: "15%" }}>가격</th>
+              <th style={{ width: "15%" }}>카테고리</th>
+              <th style={{ width: "15%" }}>품절여부</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+            {apiData.map((apiData, index) => (
+              <tr key={index} onClick={() => openModal(apiData)}>
+                <td>{index + 1}</td>
+                <td className="menu-img">
+                  <img
+                    src={process.env.PUBLIC_URL + apiData.menuImg}
+                    style={{ width: "100px", height: "100px" }}
+                  />
+                </td>
+                <td>
+                  <span>{apiData.menuName}</span>
+                </td>
+                <td>
+                  <span>{apiData.menuPrice.toLocaleString()}</span>
+                </td>
+                <td>
+                  <span>{apiData.categoryname}</span>
+                </td>
+                <td>
+                  <span>{apiData.soldoutState}</span>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
 
       <ModalForm isOpen={isModalOpen} closeModal={closeModal}>
         <div className="modal-container">
@@ -116,7 +118,11 @@ const AdminMenu = () => {
                     <span>가격</span>
                   </th>
                   <td>
-                    <span>{selectedData.menuPrice}</span>
+                    <span>
+                      {selectedData && selectedData.menuPrice
+                        ? selectedData.menuPrice.toLocaleString()
+                        : ""}
+                    </span>
                   </td>
                 </tr>
                 <tr>

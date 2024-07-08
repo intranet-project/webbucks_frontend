@@ -15,7 +15,7 @@ const AdminSales = () => {
 
   const getTotalSaleApi = () => {
     axios
-      .get("http://localhost:8000/api/v1/sales/list")
+      .get("http://localhost:8000/api/v1/sales/totalSales")
       .then((order) => {
         console.log(order);
         setTotalApiData(order.data);
@@ -135,93 +135,108 @@ const AdminSales = () => {
       <div style={{ textAlign: "left" }}>
         <h3>누적 매출</h3>
       </div>
-      <table className="table-admin">
-        <tbody>
-          <tr>
-            <th style={{ width: "10%" }}>순번</th>
-            <th style={{ width: "90%" }}>사용 포인트</th>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>
-              <span>{totalApiData.saleTotalAmount}</span>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <div className="div-scroll">
+        <table className="table-admin">
+          <tbody>
+            <tr>
+              <th style={{ width: "10%" }}>순번</th>
+              <th style={{ width: "90%" }}>누적 매출</th>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>
+                <span>
+                  {totalApiData && totalApiData.saleTotalAmount
+                    ? totalApiData.saleTotalAmount.toLocaleString()
+                    : ""}
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
       <br />
+
       <div style={{ textAlign: "left" }}>
         <h3>연간 매출</h3>
       </div>
-      <table className="table-admin">
-        <tbody>
-          <tr>
-            <th style={{ width: "10%" }}>순번</th>
-            <th style={{ width: "30%" }}>날짜</th>
-            <th style={{ width: "60%" }}>사용 포인트</th>
-          </tr>
-          {yearData.map((yearData, index) => (
-            <tr key={index}>
-              <td>{index + 1}</td>
-              <td>
-                <span>{yearData.date}</span>
-              </td>
-              <td>
-                <span>{yearData.totalSales}</span>
-              </td>
+      <div className="div-scroll" style={{ maxHeight: "200px" }}>
+        <table className="table-admin">
+          <tbody>
+            <tr>
+              <th style={{ width: "10%" }}>순번</th>
+              <th style={{ width: "30%" }}>날짜</th>
+              <th style={{ width: "60%" }}>연 매출</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+            {yearData.map((yearData, index) => (
+              <tr key={index}>
+                <td>{index + 1}</td>
+                <td>
+                  <span>{yearData.date}</span>
+                </td>
+                <td>
+                  <span>{yearData.totalSales.toLocaleString()}</span>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
       <br />
+
       <div style={{ textAlign: "left" }}>
         <h3>월간 매출</h3>
       </div>
-      <table className="table-admin">
-        <tbody>
-          <tr>
-            <th style={{ width: "10%" }}>순번</th>
-            <th style={{ width: "30%" }}>날짜</th>
-            <th style={{ width: "60%" }}>사용 포인트</th>
-          </tr>
-          {monthData.map((monthData, index) => (
-            <tr key={index}>
-              <td>{index + 1}</td>
-              <td>
-                <span>{monthData.date}</span>
-              </td>
-              <td>
-                <span>{monthData.totalSales}</span>
-              </td>
+      <div className="div-scroll" style={{ maxHeight: "350px" }}>
+        <table className="table-admin">
+          <tbody>
+            <tr>
+              <th style={{ width: "10%" }}>순번</th>
+              <th style={{ width: "30%" }}>날짜</th>
+              <th style={{ width: "60%" }}>월 매출</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-
+            {monthData.map((monthData, index) => (
+              <tr key={index}>
+                <td>{index + 1}</td>
+                <td>
+                  <span>{monthData.date}</span>
+                </td>
+                <td>
+                  <span>{monthData.totalSales.toLocaleString()}</span>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
       <br />
+
       <div style={{ textAlign: "left" }}>
         <h3>일간 매출</h3>
       </div>
-      <table className="table-admin">
-        <tbody>
-          <tr>
-            <th style={{ width: "10%" }}>순번</th>
-            <th style={{ width: "30%" }}>날짜</th>
-            <th style={{ width: "60%" }}>사용 포인트</th>
-          </tr>
-          {dayData.map((dayData, index) => (
-            <tr key={index}>
-              <td>{index + 1}</td>
-              <td>
-                <span>{dayData.date}</span>
-              </td>
-              <td>
-                <span>{dayData.totalSales}</span>
-              </td>
+
+      <div className="div-scroll" style={{ maxHeight: "350px" }}>
+        <table className="table-admin">
+          <tbody>
+            <tr>
+              <th style={{ width: "10%" }}>순번</th>
+              <th style={{ width: "30%" }}>날짜</th>
+              <th style={{ width: "60%" }}>일 매출</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+            {dayData.map((dayData, index) => (
+              <tr key={index}>
+                <td>{index + 1}</td>
+                <td>
+                  <span>{dayData.date}</span>
+                </td>
+                <td>
+                  <span>{dayData.totalSales.toLocaleString()}</span>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

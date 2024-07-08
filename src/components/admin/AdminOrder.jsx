@@ -25,6 +25,9 @@ const AdminOrder = () => {
       .get("http://localhost:8000/api/v1/b_order/list")
       .then((order) => {
         console.log(order);
+        const sortedData = order.data.sort((a, b) => {
+          return new Date(b.b_orderCreatedAt) - new Date(a.b_orderCreatedAt);
+        });
         setApiData(order.data);
       })
       .catch((error) => console.log(error));
@@ -50,42 +53,57 @@ const AdminOrder = () => {
   return (
     <div>
       <p className="text-title">오더 관리</p>
-      <table className="table-admin sel">
-        <tbody>
-          <tr>
-            <th>순번</th>
-            <th>주문번호</th>
-            <th>메뉴명</th>
-            <th>고객ID</th>
-            <th>주문시간</th>
-            <th>상태변경시간</th>
-            <th>오더상태</th>
-          </tr>
-          {apiData.map((apiData, index) => (
-            <tr key={index} onClick={() => openModal(apiData)}>
-              <td>{index + 1}</td>
-              <td>
-                <span>{apiData.b_orderId}</span>
-              </td>
-              <td>
-                <span>{apiData.menuName}</span>
-              </td>
-              <td>
-                <span>{apiData.custId}</span>
-              </td>
-              <td>
-                <span>{apiData.b_orderCreatedAt}</span>
-              </td>
-              <td>
-                <span>{apiData.b_orderStateUpdateAt}</span>
-              </td>
-              <td>
-                <span>{apiData.b_orderState}</span>
-              </td>
+      <div className="div-scroll" style={{ maxHeight: "800px" }}>
+        <table className="table-admin sel">
+          <tbody>
+            <tr>
+              <th>순번</th>
+              <th>주문번호</th>
+              <th>메뉴명</th>
+              <th>고객ID</th>
+              <th>주문시간</th>
+              <th>상태변경시간</th>
+              <th>오더상태</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+            {apiData.map((apiData, index) => (
+              <tr key={index} onClick={() => openModal(apiData)}>
+                <td>{index + 1}</td>
+                <td>
+                  <span>{apiData.b_orderId}</span>
+                </td>
+                <td>
+                  <span>{apiData.menuName}</span>
+                </td>
+                <td>
+                  <span>{apiData.custId}</span>
+                </td>
+                <td>
+                  <span>{apiData.b_orderCreatedAt}</span>
+                </td>
+                <td>
+                  <span>{apiData.b_orderStateUpdateAt}</span>
+                </td>
+                <td>
+                  <span
+                    style={{
+                      color:
+                        apiData.b_orderState === "완료"
+                          ? "green"
+                          : apiData.b_orderState === "준비중"
+                          ? "blue"
+                          : apiData.b_orderState === "취소"
+                          ? "red"
+                          : "black",
+                    }}
+                  >
+                    {apiData.b_orderState}
+                  </span>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
 
       <ModalForm isOpen={isModalOpen} closeModal={closeModal}>
         <div className="modal-header">
@@ -127,7 +145,20 @@ const AdminOrder = () => {
                     <span>{selectedData.custId}</span>
                   </td>
                   <td>
-                    <span>{selectedData.b_orderState}</span>
+                    <span
+                      style={{
+                        color:
+                          selectedData.b_orderState === "완료"
+                            ? "green"
+                            : selectedData.b_orderState === "준비중"
+                            ? "blue"
+                            : selectedData.b_orderState === "취소"
+                            ? "red"
+                            : "black",
+                      }}
+                    >
+                      {selectedData.b_orderState}
+                    </span>
                   </td>
                 </tr>
               </tbody>
@@ -135,24 +166,30 @@ const AdminOrder = () => {
           </div>
         </div>
         <div className="modal-footer">
-          <button
-            className="btn-admin"
-            onClick={() => updateApi(selectedData.b_orderStatusId, "준비중")}
-          >
-            메뉴 준비
-          </button>
-          <button
-            className="btn-admin"
-            onClick={() => updateApi(selectedData.b_orderStatusId, "완료")}
-          >
-            주문 완료
-          </button>
-          <button
-            className="btn-admin"
-            onClick={() => updateApi(selectedData.b_orderStatusId, "취소")}
-          >
-            오더 취소
-          </button>
+          {selectedData.b_orderState === "결제완료" && (
+            <button
+              className="btn-admin"
+              onClick={() => updateApi(selectedData.b_orderStatusId, "준비중")}
+            >
+              메뉴 준비
+            </button>
+          )}
+          {selectedData.b_orderState === "준비중" && (
+            <button
+              className="btn-admin"
+              onClick={() => updateApi(selectedData.b_orderStatusId, "완료")}
+            >
+              주문 완료
+            </button>
+          )}
+          {selectedData.b_orderState !== "취소" && (
+            <button
+              className="btn-admin"
+              onClick={() => updateApi(selectedData.b_orderStatusId, "취소")}
+            >
+              오더 취소
+            </button>
+          )}
         </div>
       </ModalForm>
     </div>
