@@ -4,7 +4,7 @@ import "../../../styles/AdminFooter.css";
 const AdminFooter = () => {
   return (
     <footer className="footer">
-      <p>푸터</p>
+      <p className="footer-title">BLACKBUCKS</p>
     </footer>
   );
 };

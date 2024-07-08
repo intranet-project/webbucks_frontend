@@ -23,3 +23,11 @@
   .nav-link:active {
     color: #0056b3;
   }
+
+  .footer-title{
+    color: lightgray;
+    font-size: 20px;
+  }
+  .footer-title:hover{
+    cursor: default;
+  }

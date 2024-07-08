@@ -20,7 +20,7 @@ const AdminSideBar = () => {
       <nav className="sidebar-nav">
         <ul>
           <li>
-            <Link to="/admin_home">Home</Link>
+            <Link to="/admin">Home</Link>
           </li>
           <li>
             <Link to="/admin_order">오더관리</Link>
