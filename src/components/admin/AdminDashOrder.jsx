@@ -13,7 +13,14 @@ const AdminDashOrder = () => {
       .get("http://localhost:8000/api/v1/b_order/list")
       .then((order) => {
         console.log(order);
-        setApiData(order.data);
+        const sortedData = order.data.sort((a, b) => {
+          return new Date(b.b_orderCreatedAt) - new Date(a.b_orderCreatedAt);
+        });
+
+        const filteredData = sortedData.filter((item) =>
+          ["결제완료", "준비중"].includes(item.b_orderState)
+        );
+        setApiData(filteredData);
       })
       .catch((error) => console.log(error));
   };
@@ -26,9 +33,9 @@ const AdminDashOrder = () => {
         </div>
 
         <div
+          className="div-scroll"
           style={{
             maxHeight: "275px",
-            overflowY: "auto",
           }}
         >
           <table className="table-admin">
@@ -53,7 +60,14 @@ const AdminDashOrder = () => {
                     <span>{apiData.b_orderCreatedAt}</span>
                   </td>
                   <td>
-                    <span>{apiData.b_orderState}</span>
+                    <span
+                      style={{
+                        color:
+                          apiData.b_orderState === "준비중" ? "blue" : "black",
+                      }}
+                    >
+                      {apiData.b_orderState}
+                    </span>
                   </td>
                 </tr>
               ))}

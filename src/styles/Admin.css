@@ -97,11 +97,44 @@ p.text-title {
   display: inline-block;
   margin: 0 10px 0 10px;
   border-radius: 10px;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
+  box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.5);
 }
 
 .dashboard-title{
   font-weight: bold;
   font-size: 18px;
   padding-bottom: 10px;
+}
+
+
+.div-scroll {
+  border: 1px solid gray;
+  border-radius: 10px;
+  overflow-y: auto;
+}
+
+.div-scroll::-webkit-scrollbar {
+    width: 12px; 
+}
+
+.div-scroll::-webkit-scrollbar-thumb {
+    height: 30%; /* 스크롤바의 길이 */
+    background: gray; 
+    
+    border-radius: 10px;
+}
+
+.div-scroll::-webkit-scrollbar-track {
+    background: rgb(124, 124, 124,0.2);
+    border-radius: 10px;
+}
+
+.div-scroll::-webkit-scrollbar-thumb:hover {
+  cursor: pointer;
+}
+
+/* 스크롤 트랙의 hover 효과 */
+.div-scroll::-webkit-scrollbar-track:hover {
+  background: rgba(124, 124, 124, 0.4); 
+  cursor: pointer;
 }
