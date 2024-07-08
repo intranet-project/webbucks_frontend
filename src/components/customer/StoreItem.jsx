@@ -8,8 +8,8 @@ const StoreItem = ({ store }) => {
         <img src={process.env.PUBLIC_URL + "/store.PNG"} alt="Store Icon" />
       </div>
       <div className="store-item-content">
-        <h2>{store.storeName}</h2>
-        <p>{store.storeAddress}</p>
+        <h2>{store.store_name}</h2>
+        <p>{store.store_address}</p>
       </div>
     </div>
   );

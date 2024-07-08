@@ -11,6 +11,7 @@ const StoreList = () => {
     const fetchStores = async () => {
       try {
         const response = await axios.get("http://localhost:8000/api/stores");
+        console.log("API 응답 데이터:", response.data); // 응답 데이터 확인
         setStores(response.data);
       } catch (error) {
         console.error("매장 데이터를 불러오는 중 오류 발생:", error);
@@ -26,8 +27,8 @@ const StoreList = () => {
 
   const filteredStores = stores.filter(
     (store) =>
-      store.storeName.includes(searchTerm) ||
-      store.storeAddress.includes(searchTerm)
+      (store.store_name && store.store_name.includes(searchTerm)) ||
+      (store.store_address && store.store_address.includes(searchTerm))
   );
 
   return (
@@ -41,7 +42,7 @@ const StoreList = () => {
       />
       <div className="store-list">
         {filteredStores.map((store) => (
-          <StoreItem key={store.storeId} store={store} />
+          <StoreItem key={store.store_id} store={store} />
         ))}
       </div>
     </div>

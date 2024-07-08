@@ -87,8 +87,8 @@ const VoiceRegistration = () => {
           >
             <option value="">매장을 선택하세요</option>
             {storeList.map((store) => (
-              <option key={store.storeId} value={store.storeId}>
-                {store.storeName}
+              <option key={store.store_id} value={store.store_id}>
+                {store.store_name}
               </option>
             ))}
           </select>
