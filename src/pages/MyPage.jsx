@@ -7,7 +7,7 @@ import axios from "axios";
  * @since 2024-07-06
  */
 const MyPage = () => {
-  const [custId, setCustId] = useState(""); // custId 상태 초기화
+  const [custId, setCustId] = useState("1"); // custId 상태 초기화
   const [points, setPoints] = useState(0); // 포인트 상태 초기화
   const [recentOrder, setRecentOrder] = useState(""); // 최근 주문 상태 초기화
 
@@ -23,12 +23,17 @@ const MyPage = () => {
       const fetchPoints = async () => {
         try {
           const response = await axios.get(
-            `http://localhost:8000/api/v1/customer/${custId}/points`
+            `http://localhost:8000/api/points/${custId}`
           );
           setPoints(response.data.points); // 포인트 정보 설정
           // 여기서 최근 주문 내역을 가져오는 API 호출을 추가할 수 있습니다.
           // 예: const orderResponse = await axios.get(`http://localhost:8000/api/v1/customer/${custId}/orders`);
           // setRecentOrder(orderResponse.data.recentOrder);
+          const orderResponse = await axios.get(
+            `http://localhost:8000/api/v1/customer/${custId}/orders`
+          );
+          console.log("엥?", orderResponse);
+          setRecentOrder(orderResponse.data);
         } catch (error) {
           console.error("포인트 정보를 불러오는 중 오류 발생:", error);
         }
@@ -60,7 +65,7 @@ const MyPage = () => {
         <p style={{ width: "100%" }}>
           최근 주문 내역 :{" "}
           <span style={{ fontStyle: "italic" }}>
-            {recentOrder ? recentOrder : "주문내역이 없습니다."}
+            {recentOrder ? recentOrder.menuName : "주문내역이 없습니다."}
           </span>
         </p>
       </div>

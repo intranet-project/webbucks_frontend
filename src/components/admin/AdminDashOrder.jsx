@@ -64,6 +64,7 @@ const AdminDashOrder = () => {
                       style={{
                         color:
                           apiData.b_orderState === "준비중" ? "blue" : "black",
+                        fontWeight: "bold",
                       }}
                     >
                       {apiData.b_orderState}

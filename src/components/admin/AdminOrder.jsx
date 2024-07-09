@@ -94,6 +94,8 @@ const AdminOrder = () => {
                           : apiData.b_orderState === "취소"
                           ? "red"
                           : "black",
+
+                      fontWeight: "bold",
                     }}
                   >
                     {apiData.b_orderState}
@@ -155,6 +157,7 @@ const AdminOrder = () => {
                             : selectedData.b_orderState === "취소"
                             ? "red"
                             : "black",
+                        fontWeight: "bold",
                       }}
                     >
                       {selectedData.b_orderState}

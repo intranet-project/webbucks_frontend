@@ -7,7 +7,7 @@ const AdminSideBar = () => {
     <div className="sidebar">
       {/*홈 화면 로고 자리 */}
       <div className="logo">
-        <Link to="/admin_home" className="header__logo">
+        <Link to="/admin" className="header__logo">
           <img
             src={process.env.PUBLIC_URL + "/logo.png"}
             alt="Logo"
