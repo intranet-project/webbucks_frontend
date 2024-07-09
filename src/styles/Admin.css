@@ -36,7 +36,7 @@ table, th, td {
 
 .table-admin.sel tr:not(:first-child):hover {
     cursor: pointer;
-    background-color: rgb(211, 211, 211);
+    background-color: rgb(211, 211, 211,0.3);
 }
 
 button {

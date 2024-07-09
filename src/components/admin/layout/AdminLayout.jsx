@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import AdminSidebar from "./AdminSideBar";
-import AdminFooter from "./AdminFooter";
+// import AdminFooter from "./AdminFooter";
 import "../../../styles/Admin.css";
 const AdminLayout = () => {
   return (
@@ -11,7 +11,7 @@ const AdminLayout = () => {
           <Outlet />
         </main>
       </div>
-      <AdminFooter />
+      {/* <AdminFooter /> */}
     </div>
   );
 };

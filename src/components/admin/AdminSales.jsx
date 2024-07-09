@@ -17,7 +17,7 @@ const AdminSales = () => {
     axios
       .get("http://localhost:8000/api/v1/sales/totalSales")
       .then((order) => {
-        console.log(order);
+        console.log("???", order);
         setTotalApiData(order.data);
       })
       .catch((error) => console.log(error));
@@ -146,8 +146,8 @@ const AdminSales = () => {
               <td>1</td>
               <td>
                 <span>
-                  {totalApiData && totalApiData.saleTotalAmount
-                    ? totalApiData.saleTotalAmount.toLocaleString()
+                  {totalApiData && totalApiData.salesTotalAmount
+                    ? totalApiData.salesTotalAmount.toLocaleString()
                     : ""}
                 </span>
               </td>
