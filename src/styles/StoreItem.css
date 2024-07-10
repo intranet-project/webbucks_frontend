@@ -6,6 +6,7 @@
   margin-bottom: 10px;
   border-radius: 4px;
   background-color: #fff;
+  overflow-y: auto;
 }
 
 .store-item-icon {
