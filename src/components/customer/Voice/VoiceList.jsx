@@ -31,7 +31,7 @@ const VoiceList = () => {
             );
             return {
               ...answer,
-              storeName: store ? store.storeName : "Unknown Store", // storeName이 없을 경우 처리
+              storeName: store.storeName,
             };
           });
           setAnswers(answersWithStoreName);
@@ -60,9 +60,8 @@ const VoiceList = () => {
       filteredAnswers = answers.filter((answer) => answer.voiceState !== null);
     }
 
-    filteredAnswers.sort(
-      (a, b) => new Date(b.voiceDate) - new Date(a.voiceDate)
-    );
+    // 접수번호 최신순 정렬
+    filteredAnswers.sort((a, b) => b.voiceId - a.voiceId);
 
     return filteredAnswers;
   };
