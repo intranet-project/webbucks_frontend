@@ -109,7 +109,7 @@ const AdminMenu = () => {
                 </tr>
                 <tr>
                   <th style={{ height: "40%" }}>메뉴설명</th>
-                  <td style={{ textAlign: "left" }}>
+                  <td>
                     <span>{selectedData.menuDetail}</span>
                   </td>
                 </tr>

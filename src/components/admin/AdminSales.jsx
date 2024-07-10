@@ -43,10 +43,16 @@ const AdminSales = () => {
   };
 
   const formatDataByMonth = (data) => {
+    const currentYear = new Date().getFullYear();
     const monthMap = {};
 
     data.forEach((item) => {
       const orderDate = new Date(item.orderCreatedAt);
+      const year = orderDate.getFullYear();
+
+      if (year !== currentYear) {
+        return; // 현재 연도와 일치하지 않으면 건너뜀
+      }
 
       const month = orderDate.getMonth() + 1; // 월을 1부터 시작하게 설정
       console.log("mon : ", month);
@@ -71,10 +77,18 @@ const AdminSales = () => {
   };
 
   const formatDataByDay = (data) => {
+    const currentYear = new Date().getFullYear();
     const dayMap = {};
 
     data.forEach((item) => {
       const orderDate = new Date(item.orderCreatedAt);
+
+      const year = orderDate.getFullYear();
+
+      if (year !== currentYear) {
+        return; // 현재 연도와 일치하지 않으면 건너뜀
+      }
+
       const month = orderDate.getMonth() + 1; // 월을 1부터 시작하게 설정
       const day = orderDate.getDate(); // 일자를 1부터 31까지 가져오기
       const dayKey = `${month}월 ${day}일`; // 고유 키 생성
