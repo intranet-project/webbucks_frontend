@@ -16,6 +16,8 @@ import VoiceRegistration from "./components/customer/Voice/VoiceRegistration";
 import MyPage from "./pages/MyPage";
 import StorePage from "./pages/StorePage";
 import Footer from "./components/common/Footer";
+import Login from "./components/Login";
+import SignUp from "./components/SignUp";
 
 const App = () => {
   return (
@@ -32,6 +34,8 @@ const App = () => {
         <Route path="/store" element={<StorePage />} />
 
         <Route path="/mypage" element={<MyPage />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signUp" element={<SignUp />} />
         <Route element={<AdminLayout />}>
           <Route path="/admin" element={<AdminHome />} />
           <Route path="/admin_order" element={<AdminOrder />} />

@@ -1,8 +1,9 @@
 .store-list-container {
   width: 100%;
-  max-width: 400px;
+  max-width: 500px;
   margin: 0 auto;
   padding: 20px;
+  overflow: hidden;
 }
 
 .search-input {
@@ -16,8 +17,17 @@
 .store-list {
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+}
+.store-item-content h2 {
+  margin: 0;
+  font-size: 1.2rem;
+  text-align: left;
 }
 
+.store-item-content p {
+  margin: 5px 0 0 0;
+}
 .store-item {
   display: flex;
   align-items: center;
@@ -26,41 +36,11 @@
   margin-bottom: 10px;
   border-radius: 4px;
   background-color: #fff;
+  text-align: left;
+  font-size: 15px;
 }
 
 .store-item-icon {
   margin-right: 10px;
   font-size: 1.5rem;
-}
-.store-item {
-  display: flex;
-  align-items: center;
-  border: 1px solid #ccc;
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 4px;
-  background-color: #fff;
-}
-
-.store-item-icon {
-  margin-right: 10px;
-  font-size: 1.5rem;
-}
-
-.store-item-content h2 {
-  margin: 0;
-  font-size: 1.2rem;
-}
-
-.store-item-content p {
-  margin: 5px 0 0 0;
-}
-
-.store-item-content h2 {
-  margin: 0;
-  font-size: 1.2rem;
-}
-
-.store-item-content p {
-  margin: 5px 0 0 0;
 }
