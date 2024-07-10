@@ -28,7 +28,7 @@ const AdminOrder = () => {
         const sortedData = order.data.sort((a, b) => {
           return new Date(b.b_orderCreatedAt) - new Date(a.b_orderCreatedAt);
         });
-        setApiData(order.data);
+        setApiData(sortedData);
       })
       .catch((error) => console.log(error));
   };
