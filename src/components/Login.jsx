@@ -61,7 +61,7 @@ const Login = () => {
           Login
         </button>
 
-        <Link to="/signUp" className="singUp">
+        <Link to="/signUp" className="button">
           회원가입
         </Link>
       </form>

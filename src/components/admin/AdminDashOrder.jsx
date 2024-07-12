@@ -35,7 +35,7 @@ const AdminDashOrder = () => {
         <div
           className="div-scroll"
           style={{
-            maxHeight: "275px",
+            maxHeight: "800px",
           }}
         >
           <table className="table-admin">

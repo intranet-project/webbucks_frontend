@@ -34,11 +34,7 @@ const Header = () => {
         <div className="header__topRight">
           {isLoggedIn ? (
             <>
-              <Link
-                to="/logout"
-                className="header__topLink"
-                onClick={handleLogout}
-              >
+              <Link to="/" className="header__topLink" onClick={handleLogout}>
                 로그아웃
               </Link>
               <Link to="/mypage" className="header__topLink">
